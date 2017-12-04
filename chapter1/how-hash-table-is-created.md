@@ -79,21 +79,31 @@ When we execute this code, we always get the power of 2.
 4096
 ```
 
-
-
-
-
-
-
-
+Here is a sample code that could generate indexes inside a hast map.
 
 ```
 int requestedHashMapSize = 20;
-int hashMapSize = tableSizeFor(20);
+int hashMapSize = tableSizeFor(requestedHashMapSize);
+String [] values = ["Hi", "How", "are", "you", "doing", "I", "am", "doing", "very", "well"];
 for (String value : values) {
   int sizeMinusOne = hashMapSize - 1;
   println sizeMinusOne & (value.hashCode() ^ (value.hashCode() >>> 16));
 }
+```
+
+Here are the indexes. Even we have bigger size of array, we get redundant index and thus we need to create a linked list from that index. 
+
+```
+1
+17
+21
+30
+2
+9
+12
+2
+1
+25
 ```
 
 
