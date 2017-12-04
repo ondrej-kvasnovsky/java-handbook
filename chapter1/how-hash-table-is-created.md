@@ -23,7 +23,7 @@ for (String value : values) {
 
 > 0x7FFFFFFF is a number in hexadecimal \(2,147,483,647 in decimal\) that represents the maximum positive value for a 32-bit signed binary integer.
 
-Observe how many conflicts \(same indexes we get here\). 
+Observe how many conflicts \(same indexes we get here\).
 
 ```
 1
@@ -40,7 +40,7 @@ Observe how many conflicts \(same indexes we get here\).
 
 ## HashMap
 
-HastMap is using different approach, it will create initial size of up to the array as power of 2 of the provided size. Here is how it works. 
+HastMap is using different approach, it will create initial size of up to the array as power of 2 of the provided size. Here is how it works.
 
 ```
 int tableSizeFor(int cap) {
@@ -65,7 +65,7 @@ println tableSizeFor(1000)
 println tableSizeFor(4000)
 ```
 
-When we execute this code, we always get the power of 2. 
+When we execute this code, we always get the power of 2.
 
 ```
 1
@@ -83,18 +83,18 @@ When we execute this code, we always get the power of 2.
 
 
 
+
+
+
+
 ```
 int requestedHashMapSize = 20;
-int hashMapSize = Math.pow(requestedHashMapSize, 2);
+int hashMapSize = tableSizeFor(20);
 for (String value : values) {
   int sizeMinusOne = hashMapSize - 1;
   println sizeMinusOne & (value.hashCode() ^ (value.hashCode() >>> 16));
 }
 ```
-
-
-
-
 
 
 
