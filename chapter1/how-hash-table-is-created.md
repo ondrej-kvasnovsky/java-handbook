@@ -38,9 +38,9 @@ Observe how many conflicts \(same indexes we get here\). If a value is different
 6
 ```
 
-## HashMap
+## HashSet
 
-HastMap is using different approach, it will create initial size of up to the array as power of 2 of the provided size. Here is how it works.
+`HastSet` is using different approach, it will create initial size of up to the array as power of 2 of the provided size. Here is how it works.
 
 ```
 int tableSizeFor(int cap) {
@@ -82,11 +82,11 @@ When we execute this code, we always get the power of 2.
 Here is a sample code that could generate indexes inside a hast map.
 
 ```
-int requestedHashMapSize = 20;
-int hashMapSize = tableSizeFor(requestedHashMapSize);
+int requestedHashSetSize = 20;
+int hashSetSize = tableSizeFor(requestedHashSetSize);
 String [] values = ["Hi", "How", "are", "you", "doing", "I", "am", "doing", "very", "well"];
 for (String value : values) {
-  int sizeMinusOne = hashMapSize - 1;
+  int sizeMinusOne = hashSetSize - 1;
   println sizeMinusOne & (value.hashCode() ^ (value.hashCode() >>> 16));
 }
 ```
