@@ -31,7 +31,19 @@ int originalHashCode = System.identityHashCode(test);
 System.out.println()
 ```
 
-If we provide weak implemention of `hashCode` method, we might degrade peformance of hash map. Lets try to create many instances of `Test` class and insert them into `HashMap`. This code takes about 1 second to insert 10 000 items into hash map. All because of wrong implementation of hashCode.
+We can verify that identityHashCode method really prints the original hash code. Just get the hashCode of parent in the hasCode method.
+
+```
+class Test {
+  @Override
+  public int hashCode() {
+    System.out.println(super.hashCode())
+    return 1;
+  }
+}
+```
+
+If we provide weak implemention of `hashCode` method, we might degrade peformance of hash map. Lets try to create many instances of `Test` class and insert them into `HashMap`. This code takes about 1 second to insert 10 000 items into hash map. All because of wrong implementation of `hashCode`.
 
 ```
 class Test {
@@ -50,7 +62,7 @@ System.out.println(new Date().getTime() - start);
 // prints out 915
 ```
 
-Here is the code that leaves implementation of hashCode to Object class. This one will insert 10 000 items into hash map in about 5 milliseconds. 
+Here is the code that leaves implementation of `hashCode` to `Object` class. This one will insert 10 000 items into hash map in about 5 milliseconds.
 
 ```
 class Test {
