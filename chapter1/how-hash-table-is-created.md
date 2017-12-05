@@ -23,7 +23,7 @@ for (String value : values) {
 
 > 0x7FFFFFFF is a number in hexadecimal \(2,147,483,647 in decimal\) that represents the maximum positive value for a 32-bit signed binary integer.
 
-Observe how many conflicts \(same indexes we get here\).
+Observe how many conflicts \(same indexes we get here\). If a value is different when there is a conflict, we would have to create linked list on that index.
 
 ```
 1
@@ -91,7 +91,7 @@ for (String value : values) {
 }
 ```
 
-Here are the indexes. Even we have bigger size of array, we get redundant index and thus we need to create a linked list from that index. 
+Here are the indexes. Even we have bigger size of array, we get redundant index and thus we need to create a linked list from that index.
 
 ```
 1
