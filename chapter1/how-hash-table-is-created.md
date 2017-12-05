@@ -79,7 +79,7 @@ When we execute this code, we always get the power of 2.
 4096
 ```
 
-Here is a sample code that could generate indexes inside a hast map.
+Here is a sample code that could generate indexes inside a hast set.
 
 ```
 int requestedHashSetSize = 20;
