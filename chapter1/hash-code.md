@@ -77,5 +77,111 @@ System.out.println(new Date().getTime() - start);
 // prints out 5
 ```
 
+What should be the proper implementation of `hashCode` for Test? For that class, we shouldn't touch the `hashCode` method. 
+
+In order to override `hashCode`, we need to get better example. Lets create `User` class that will contain couple of fields. We want to  use those fields to calculate `hashCode`. We can `Objects.hash` method since Java 7.
+
+```
+import java.util.Objects;
+
+public class User {
+  private String name;
+  private int age;
+  private String passport;
+
+  @Override
+  public int hashCode() {
+     return Objects.hash(name, age, passport);
+  }
+}
+```
+
+Lets create the same performance test we did with `Test` class.
+
+```
+public class User {
+  String name;
+  int age;
+  String passport;
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, age, passport);
+  }
+}
+
+long start = new Date().getTime();
+Set map = new HashSet();
+for (int i = 0; i < 10000; i++) {
+  User user = new User();
+  user.name = String.valueOf(i);
+  user.age = i;
+  user.passport = String.valueOf(i);
+  map.add(user);
+}
+System.out.println(new Date().getTime() - start);
+// prints out 33
+```
+
+Now the `hashCode` method is implemented correctly and we do not have issue performance issue when inserting values into hash set. 
+
+Lets try to verify if we are able to find out if the user is present in that hash set. 
+
+```
+User user = new User();
+user.name = "9999";
+user.age = 9999;
+user.passport = "9999";
+
+boolean contains = map.contains(user);
+System.out.println(contains);
+// prints out false
+```
+
+It says that the user is not present in the hash set, because we didn't overridden equals method. Lets do it now. 
+
+```
+public class User {
+  String name;
+  int age;
+  String passport;
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this) return true;
+    if (!(o instanceof User)) {
+       return false;
+    }
+    User user = (User) o;
+    return age == o.age &&
+      Objects.equals(name, user.name) &&
+      Objects.equals(passport, user.passport);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, age, passport);
+  }
+}
+
+Set<User> map = new HashSet<>();
+for (int i = 0; i < 10000; i++) {
+  User user = new User();
+  user.name = String.valueOf(i);
+  user.age = i;
+  user.passport = String.valueOf(i);
+  map.add(user);
+}
+
+User user = new User();
+user.name = "9999";
+user.age = 9999;
+user.passport = "9999";
+
+boolean contains = map.contains(user);
+System.out.println(contains);
+// prints out true
+```
+
 
 
