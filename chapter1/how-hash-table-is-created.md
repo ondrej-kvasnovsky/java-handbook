@@ -23,7 +23,7 @@ for (String value : values) {
 
 > 0x7FFFFFFF is a number in hexadecimal \(2,147,483,647 in decimal\) that represents the maximum positive value for a 32-bit signed binary integer.
 >
-> Lets decode why we need '& 0x7FFFFFFF'. 
+> Lets decode why we need '& 0x7FFFFFFF'.
 >
 > First lets see how binary numbers are created. For positive numbers, 0 == 0000 0000  
 > 1 == 0 + 1 == 0000 0001  
@@ -37,11 +37,11 @@ for (String value : values) {
 > -3 == -2 - 1 == 1111 1101  
 > -4 == -3 - 1 == 1111 1100
 >
-> This way, if we add negative number, like -2, which is 1111 1111 1111 1111 1111 1111 1111 1110, for 32bit number, to 0x7FFFFFFF, which is 111 1111 1111 1111 1111 1111 1111 1111 \(one digit less than -2, because 32nd bit is reserved for sign\), we always get positive number. 
+> This way, if we add negative number, like -2, which is 1111 1111 1111 1111 1111 1111 1111 1110, for 32bit number, to 0x7FFFFFFF, which is 111 1111 1111 1111 1111 1111 1111 1111 \(one digit less than -2, because 32nd bit is reserved for sign\), we always get positive number.
 >
 > You can try to print out Integer.toBinaryString\(-2\), Integer.toBinaryString\(0x7FFFFFFF\), and then \(-2 & 0x7FFFFFFF\). You will get 2147483646, which is 111 1111 1111 1111 1111 1111 1111 1110 in binary. Then we take 2147483646 % size of table, e.g. 20 and we get the index for our element, which is 6.
 >
-> Or we can try to count it manually, it is not that difficult for -2 & 2147483646: 
+> Or we can try to count it manually, it is not that difficult for -2 & 2147483646:
 >
 > 1111 1111 1111 1111 1111 1111 1111 1110 &  
 >   111 1111 1111 1111 1111 1111 1111 1111  
