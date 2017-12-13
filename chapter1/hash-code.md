@@ -2,7 +2,7 @@
 
 We are going to dive deep into `hashCode` method in Java.
 
-## Object
+## How hashCode influences performance
 
 `Object` class contains default implementation of `hasCode` method. We can override that method and implement.
 
@@ -77,7 +77,7 @@ System.out.println(new Date().getTime() - start);
 // prints out 5
 ```
 
-What should be the proper implementation of `hashCode` for Test? For that class, we shouldn't touch the `hashCode` method. 
+What should be the proper implementation of `hashCode` for Test? For that class, we shouldn't touch the `hashCode` method.
 
 In order to override `hashCode`, we need to get better example. Lets create `User` class that will contain couple of fields. We want to  use those fields to calculate `hashCode`. We can `Objects.hash` method since Java 7.
 
@@ -123,9 +123,9 @@ System.out.println(new Date().getTime() - start);
 // prints out 33
 ```
 
-Now the `hashCode` method is implemented correctly and we do not have issue performance issue when inserting values into hash set. 
+Now the `hashCode` method is implemented correctly and we do not have issue performance issue when inserting values into hash set.
 
-Lets try to verify if we are able to find out if the user is present in that hash set. 
+Lets try to verify if we are able to find out if the user is present in that hash set.
 
 ```
 User user = new User();
@@ -138,7 +138,7 @@ System.out.println(contains);
 // prints out false
 ```
 
-It says that the user is not present in the hash set, because we didn't overridden equals method. Lets do it now. 
+It says that the user is not present in the hash set, because we didn't overridden equals method. Lets do it now.
 
 ```
 public class User {
