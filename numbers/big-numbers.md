@@ -4,13 +4,13 @@ We are going to look at how to work with big number. Bigger than what can fit in
 
 ## Integers
 
-Normally, we work with primitive types. Here is an example loop that will try to verify if a number is prime number. 
+Normally, we work with primitive types. Here is an example loop that will try to verify if a number is prime number.
 
 ```
 boolean isPrime = true
-int max = 999
-for (int i = 2; i < max - 1; i++) {
-  int remainder = max % i;
+int candidate = 999
+for (int i = 2; i < candidate - 1; i++) {
+  int remainder = candidate % i;
   if (remainder == 0) isPrime = false
 }
 println isPrime
@@ -20,9 +20,9 @@ How would the same code look like using BigInteger, so we can check whether a ve
 
 ```
 boolean isPrime = true;
-BigInteger max = new BigInteger("999");
-for (BigInteger i = BigInteger.valueOf(1); i.compareTo(max) < 0; i = i.add(BigInteger.ONE)) {
-  BigInteger remainder = max.remainder(i);
+BigInteger candidate = new BigInteger("999");
+for (BigInteger i = BigInteger.valueOf(1); i.compareTo(candidate) < 0; i = i.add(BigInteger.ONE)) {
+  BigInteger remainder = candidate.remainder(i);
   if (remainder == 0) isPrime = false;
 }
 println isPrime;
