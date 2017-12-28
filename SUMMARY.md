@@ -11,4 +11,6 @@
 * [Java 9](java-9.md)
   * [Modules](modules.md)
   * [Other Improvements](java-9/other-improvements.md)
+* [Concurrency](concurrency.md)
+  * [Locking](concurrency/locking.md)
 
