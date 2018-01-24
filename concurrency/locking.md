@@ -6,13 +6,63 @@ When we work with multiple threads, we might need to make sure that a variable o
 
 We can use `volatile` on variable level, like this `volatile int counter;`. When we use `volatile` keyword, we say Java to keep that variable in main memory. Better explained, because each thread can have its own copy of a variable, `volatile` keeps threads variable always synchronized with the value of the variable in the main memory.
 
+`volatile` does not guarantee thread safety. Lets see it in the following example.
+
+```
+public class VolatileCounter {
+
+    private volatile Integer counter = 0;
+
+    public Integer increase() {
+        return ++counter;
+    }
+}
+```
+
 > When we expect to use only basic operations, like set or get value, we can us `volatile`. But if we want to have an atomic operations like setAndGet or incrementAndGet, we need to use `*Atomic` class from Java.
+
+Lets test the code. We create 16 threads and let it to increase the counter. Because ++ is not atomic operation, we will see that the total number is not equal to expected result. 
+
+```
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.*;
+
+public class VolatileCounterTest {
+
+    private VolatileCounter counter;
+
+    @Before
+    public void setUp() {
+        counter = new VolatileCounter();
+    }
+
+    @Test
+    public void insert() throws InterruptedException {
+        List<Callable<Object>> tasks = new ArrayList<>();
+        IntStream.range(0, 1000).forEach(it -> tasks.add(() -> counter.increase()));
+
+        Executors.newFixedThreadPool(16).invokeAll(tasks, 2, TimeUnit.SECONDS);
+
+        System.out.println(counter.getValue());
+    }
+}
+```
+
+Observe that the value changes randomly. Run the test couple of times, and you always get different number. 
+
+```
+988
+```
 
 ### synchronized
 
 We can use `synchronized` keyword to lock block of code, so it can be accessed only by one thread at the time. It makes sure that only one thread holds a lock and thus can access critical section. Before the synchronized section is accessed, thread variables are synchronized with values from main memory, to ensure data consistency.
 
-Lets see how we could use synchronized to make sure read and write operations are not called by multiple threads at the same time. 
+Lets see how we could use synchronized to make sure read and write operations are not called by multiple threads at the same time.
 
 ```
 import java.util.HashMap;
@@ -40,7 +90,7 @@ public class SyncDb<KEY, VALUE> {
 }
 ```
 
-Here is a test we could run to see what is happening. 
+Here is a test we could run to see what is happening.
 
 ```
 import org.junit.Before;
@@ -87,7 +137,7 @@ public class SyncDbTest {
 }
 ```
 
-Here we can see that this kind of locking does not perform very well. 
+Here we can see that this kind of locking does not perform very well.
 
 ```
 pool-1-thread-1 wants to write.
@@ -130,7 +180,7 @@ pool-1-thread-17 Find: 14
 
 Allows multiple thread to read a resource but only one thread to write. When a thread wants to write, the lock marks that there is a thread requesting write. Then the lock prioritizes write. Because it could happen that there are too many read threads and write never occurs, starvation.
 
-What is the [difference between read and write](https://stackoverflow.com/questions/18354339/reentrantreadwritelock-whats-the-difference-between-readlock-and-writelock) locks? 
+What is the [difference between read and write](https://stackoverflow.com/questions/18354339/reentrantreadwritelock-whats-the-difference-between-readlock-and-writelock) locks?
 
 `readLock.lock();`
 
