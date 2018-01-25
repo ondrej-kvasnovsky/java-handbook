@@ -21,7 +21,7 @@ public class VolatileCounter {
 
 > When we expect to use only basic operations, like set or get value, we can us `volatile`. But if we want to have an atomic operations like setAndGet or incrementAndGet, we need to use `*Atomic` class from Java.
 
-Lets test the code. We create 16 threads and let it to increase the counter. Because ++ is not atomic operation, we will see that the total number is not equal to expected result. 
+Lets test the code. We create 16 threads and let it to increase the counter. Because ++ is not atomic operation, we will see that the total number is not equal to expected result.
 
 ```
 import org.junit.Before;
@@ -52,7 +52,7 @@ public class VolatileCounterTest {
 }
 ```
 
-Observe that the value changes randomly. Run the test couple of times, and you always get different number. 
+Observe that the value changes randomly. Run the test couple of times, and you always get different number.
 
 ```
 988
@@ -510,6 +510,69 @@ pool-1-thread-17 Find: 14
 ```
 
 > More about [stamped lock](https://dzone.com/articles/a-look-at-stampedlock?fromrel=true)
+
+### Semaphore
+
+Semaphore will make sure we only allow N threads to access a resource.
+
+```
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.List;
+import java.util.concurrent.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+public class SemaphoreTest {
+
+    @Test
+    public void acquireExactly5Locks() throws InterruptedException {
+        class Counter {
+            int value = 0;
+        }
+        Counter counter = new Counter();
+
+        Semaphore semaphore = new Semaphore(5);
+
+        ExecutorService executor = Executors.newFixedThreadPool(100);
+        List<Callable<Object>> tasks = IntStream.range(0, 100).mapToObj((int i) -> (Callable<Object>) () -> {
+            boolean acquired = semaphore.tryAcquire();
+            if (acquired) {
+                counter.value++;
+            }
+            return null;
+        }).collect(Collectors.toList());
+        executor.invokeAll(tasks);
+
+        Assert.assertEquals(5, counter.value);
+    }
+}
+```
+
+### Concurrent hashmap
+
+We can use concurrent has map that will use multiple threads to perform our operations.
+
+```
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.concurrent.*;
+
+public class ConcurrentHashMapTest {
+
+    @Test
+    public void processWithConcurrency() {
+        ConcurrentHashMap<Integer, String> values = new ConcurrentHashMap<>();
+        values.put(1, "Hi");
+        values.put(2, "Man");
+
+        Integer reduced = values.reduce(1, (key, value) -> key + value.length(), (first, second) -> first + second);
+        Assert.assertEquals(Integer.valueOf(8), reduced);
+    }
+}
+```
 
 
 
