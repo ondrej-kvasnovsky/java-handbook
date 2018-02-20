@@ -13,4 +13,7 @@
   * [Other Improvements](java-9/other-improvements.md)
 * [Concurrency](concurrency.md)
   * [Locking](concurrency/locking.md)
+* [Event Driven Non-Blocking Frameworks](event-driven-non-blocking-frameworks.md)
+  * [Vert.x](event-driven-non-blocking-frameworks/vertx.md)
+  * [Netty](event-driven-non-blocking-frameworks/netty.md)
 
