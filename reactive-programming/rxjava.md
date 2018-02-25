@@ -26,7 +26,7 @@ class ObservableHelloWorld {
 }
 ```
 
-We create observable and emit a "Hello World" message. Then we subscribe to that observable and print the message out. 
+We create observable and emit a "Hello World" message. Then we subscribe to that observable and print the message out.
 
 ```
 Hello World
@@ -38,7 +38,7 @@ Hello World
 
 #### Interval
 
-We can define interval that will execute consequent calls on flowable. In this case, we create interval that emits random long numbers every two seconds. 
+We can define interval that will execute consequent calls on flowable. In this case, we create interval that emits random long numbers every two seconds.
 
 ```
 import io.reactivex.Flowable;
@@ -81,7 +81,7 @@ class FlowableZip {
 }
 ```
 
-When we run zipWith on two flowables, it creates inner join and maps the values using the function provided as second parameter. 
+When we run zipWith on two flowables, it creates inner join and maps the values using the function provided as second parameter.
 
 ```
 2
@@ -89,7 +89,7 @@ When we run zipWith on two flowables, it creates inner join and maps the values 
 6
 ```
 
-The first example of zipWith is really easy. Lets try to do something more interesting. Lets create two streams of numbers and then zip them together. Each stream will generate a number after two seconds. 
+The first example of zipWith is really easy. Lets try to do something more interesting. Lets create two streams of numbers and then zip them together. Each stream will generate a number after two seconds.
 
 ```
 class FlowableZipStreams {
@@ -108,7 +108,7 @@ class FlowableZipStreams {
 }
 ```
 
-When we run this code, each stream generates number from 0 to 10. Then the zipWith method will make sum of those two numbers. 
+When we run this code, each stream generates number from 0 to 10. Then the zipWith method will make sum of those two numbers.
 
 ```
 10
@@ -121,7 +121,7 @@ When we run this code, each stream generates number from 0 to 10. Then the zipWi
 
 #### Filtering Values
 
-We can use filter method to filter values coming from flowable. We are going to filter values that are lower than 3 in the following example. 
+We can use filter method to filter values coming from flowable. We are going to filter values that are lower than 3 in the following example.
 
 ```
 class FlowableFilter {
@@ -136,7 +136,7 @@ class FlowableFilter {
 }
 ```
 
-Here is the output when we run the code. 
+Here is the output when we run the code.
 
 ```
 1
@@ -145,7 +145,7 @@ Here is the output when we run the code.
 
 #### Publish & Subscribe
 
-We can create well defined publishers and subscribers using RxJava. In this example, we are going to publish two messages and announce completion of production. 
+We can create well defined publishers and subscribers using RxJava. In this example, we are going to publish two messages and announce completion of production.
 
 ```
 class FlowablePubSub {
@@ -195,7 +195,7 @@ class FlowablePubSub {
 }
 ```
 
-Here is the output. First subscriber will receive messages. Then another subscriber, who has only one method prints received messages. 
+Here is the output. First subscriber will receive messages. Then another subscriber, who has only one method prints received messages.
 
 ```
 [onSubscribe]
@@ -208,7 +208,7 @@ Here is the output. First subscriber will receive messages. Then another subscri
 
 #### Testing
 
-When it comes to testing, it might be tricky to test some features of Flowable. There are couple of methods that help to verify expected behavior. 
+When it comes to testing, it might be tricky to test some features of Flowable. There are couple of methods that help to verify expected behavior.
 
 ```
 class FlowableTesting {
@@ -224,11 +224,11 @@ class FlowableTesting {
 
 ### Error Handling
 
-Error handling is one of the most important features we are going to use when working with `Flowable`.  We might need to recover from network errors, when remote service fails and we need to retry couple of times. 
+Error handling is one of the most important features we are going to use when working with `Flowable`.  We might need to recover from network errors, when remote service fails and we need to retry couple of times.
 
-Or we need to recover from execution of some logic when an exception was thrown. Or we need to recover from system errors when, for example, an exception was thrown because of missing space on hard drive. 
+Or we need to recover from execution of some logic when an exception was thrown. Or we need to recover from system errors when, for example, an exception was thrown because of missing space on hard drive.
 
-The following code is going to try 5 times to recover from error state. When it fails 6th time, it handle error by returning human readable message. 
+The following code is going to try 5 times to recover from error state. When it fails 6th time, it handle error by returning human readable message.
 
 ```
 class FLowableErrorHandling {
@@ -247,7 +247,7 @@ class FLowableErrorHandling {
 }
 ```
 
-Here how the output of execution looks like. 
+Here how the output of execution looks like.
 
 ```
 0
@@ -261,7 +261,7 @@ Sorry, can't do it, god knows I tried.
 
 #### Fetching Data
 
-Lets say we want to fetch data from some server. We start with list of URLs and we want to end up with list HTML that is fetched from web servers. Also we want to take care of error handling. If an URL does not exist, we want to return human readable message. 
+Lets say we want to fetch data from some server. We start with list of URLs and we want to end up with list HTML that is fetched from web servers. Also we want to take care of error handling. If an URL does not exist, we want to return human readable message.
 
 ```
 class FlowableFetchingData {
@@ -286,7 +286,7 @@ class FlowableFetchingData {
         }
 ```
 
-Wehn we run the code, we get HTML from google and then we get an exception because the second page does not exist. 
+Wehn we run the code, we get HTML from google and then we get an exception because the second page does not exist.
 
 ```
         <!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en"><head><meta content="Search the world's information, including webpages, images, videos and more. Google has many special features to help you find exactly what you're looking for." name="description"><meta content="noodp" name="robots"><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/logos/doodles/2018/doodle-snow-games-day-16-5525914497581056.3-l.png" itemprop="image"><meta content="Day 16 of the Doodle Snow Games!" property="twitter:title"><meta content="Day 16 of the Doodle Snow Games! &#10052; #GoogleDoodle" property="twitter:description"><meta content="Day 16 of the Doodle Snow Games! &#10052; #GoogleDoodle" property="og:description"><meta content="summary_large_image" property="twitter:card"><meta content="@GoogleDoodles" property="twitter:site"><meta content="https://www.google.com/logos/doodles/2018/doodle-snow-games-day-16-5525914497581056.2-2xa.gif" property="twitter:image"><meta content="https://www.google.com/logos/doodles/2018/doodle-snow-games-day-16-5525914497581056.2-2xa.gif" property="og:image"><meta content="782" property="og:image:width"><meta content="440" property="og:image:height"><meta content="https://www.google.com/logos/doodles/2018/doodle-snow-games-day-16-5525914497581056.2-2xa.gif" property="og:url"><meta content="video.other" property="og:type"><title>Google</title><script nonce="Hu3wwfF1hMZr1E1gyEUkSg==">(function(){window.google={kEI:'5xCRWtrqGMOkjwPav7WwBA',kEXPI:'1301799,1354276,1354916,1355218,1355527,1355675,1355761,1356040,1356179,1356691,1356779,1357034,1357219,1357843,1358012,3700062,3700278,3700521,4029815,4031109,4041302,4043492,4045841,4048347,4081038,4097153,4097922,4097929,4098733,4098740,4102827,4103845,4104658,4107914,4109490,4109596,4115697,4116279,4116731,4117539,4118798,4119032,4119034,4119036,4119811,4119812,4119820,4120660,4121175,4122511,4124727,4124850,4125837,4126202,4126754,4127086,4127418,4127744,4128586,4128995,4129520,4129633,4130782,4131247,4131834,4133509,4133751,4133752,4135025,4135249,4136073,4137467,4137597,4137646,4139722,4139730,4140273,4140319,4141160,4141174,4141601,4141707,4141915,4142071,4142555,4142834,4143278,4143676,4143817,4144231,4144442,4144545,4144704,4144761,4144803,4145088,4145461,4145485,4145772,4145836,4146147,4146754,4147026,4147436,4147900,4147943,4148061,4148267,4148279,4148304,4148498,4148608,4148966,4149017,4149271,4149304,4149338,4150005,4150018,4150022,4150185,4150413,4150429,4151013,4151016,4151048,4151054,4151263,4151295,4151361,4151389,4151703,4151918,4152049,4152151,4152944,4153062,4153222,4153365,4153421,4153545,4153550,4153847,4153952,4154017,4154043,4154081,4154191,4154203,4154376,4154506,4154946,4155118,4155444,4155569,4155604,4155684,4156008,4156123,4156629,4156631,4156635,4156657,4156663,4156701,4156877,10200083,10201957,10202524,15807764,19000288,19000423,19000427,19001999,19002548,19002880,19003321,19003323,19003325,19003326,19003328,19003329,19003330,19003407,19003408,19003409,19004309,19004516,19004517,19004518,19004519,19004520,19004521,19004887,19004901,19005005,19005009,19005010,41317155',authuser:0,kscs:'c9c918f0_5xCRWtrqGMOkjwPav7WwBA',u:'c9c918f0',kGL:'US'};google.kHL='en';})();(function(){google.lc=[];google.li=0;google.getEI=function(a){for(var b;a&&(!a.getAttribute||!(b=a.getAttribute("eid")));)a=a.parentNode;return b||google.kEI};google.getLEI=function(a){for(var b=null;a&&(!a.getAttribute||!(b=a.getAttribute("leid")));)a=a.parentNode;return b};google.https=function(){return"https:"==window.location.protocol};google.ml=function(){return null};google.wl=function(a,b){try{google.ml(Error(a),!1,b)}catch(d){}};google.time=function(){return(new Date).getTime()};google.log=function(a,b,d,c,g){if(a=google.logUrl(a,b,d,c,g)){b=new Image;var e=google.lc,f=google.li;e[f]=b;b.onerror=b.onload=b.onabort=function(){delete e[f]};google.vel&&google.vel.lu&&google.vel.lu(a);b.src=a;google.li=f+1}};google.logUrl=function(a,b,d,c,g){var e="",f=google.ls||"";d||-1!=b.search("&ei=")||(e="&ei="+google.getEI(c),-1==b.search("&lei=")&&(c=google.getLEI(c))&&(e+="&lei="+c));c="";!d&&google.cshid&&-1==b.search("&cshid=")&&(c="&cshid="+google.cshid);a=d||"/"+(g||"gen_204")+"?atyp=i&ct="+a+"&cad="+b+e+f+"&zx="+google.time()+c;/^http:/i.test(a)&&google.https()&&(google.ml(Error("a"),!1,{src:a,glmm:1}),a="");return a};}).call(this);(function(){google.y={};google.x=function(a,b){if(a)var c=a.id;else{do c=Math.random();while(google.y[c])}google.y[c]=[a,b];return!1};google.lm=[];google.plm=function(a){google.lm.push.apply(google.lm,a)};google.lq=[];google.load=function(a,b,c){google.lq.push([[a],b,c])};google.loadAll=function(a,b){google.lq.push([a,b])};}).call(this);google.f={};var a=window.location,b=a.href.indexOf("#");if(0<=b){var c=a.href.substring(b+1);/(^|&)q=/.test(c)&&-1==c.indexOf("#")&&a.replace("/search?"+c.replace(/(^|&)fp=[^&]*/g,"")+"&cad=h")};</script><style>#gbar,#guser{font-size:13px;padding-top:1px !important;}#gbar{height:22px}#guser{padding-bottom:7px !important;text-align:right}.gbh,.gbd{border-top:1px solid #c9d7f1;font-size:1px}.gbh{height:0;position:absolute;top:24px;width:100%}@media all{.gb1{height:22px;margin-right:.5em;vertical-align:top}#gbar{float:left}}a.gb1,a.gb4{text-decoration:underline !important}a.gb1,a.gb4{color:#00c !important}.gbi .gb4{color:#dd8e27 !important}.gbf .gb4{color:#900 !important}
@@ -300,9 +300,9 @@ Wehn we run the code, we get HTML from google and then we get an exception becau
 
 #### Throttling
 
-Throttling is mechanism to avoid memory, network or CPU issues by reducing number of operations. In short, it is one of the mechanisms to avoid system overload. 
+Throttling is mechanism to avoid memory, network or CPU issues by reducing number of operations. In short, it is one of the mechanisms to avoid system overload.
 
-Lets create flowable that emits a random integer every 100 milliseconds. That could be a lot for our system and we can handle it by taking only one number every second. 
+Lets create flowable that emits a random integer every 100 milliseconds. That could be a lot for our system and we can handle it by taking only one number every second.
 
 ```
 // throttling -> throw away some data to handle the load
@@ -313,7 +313,7 @@ Flowable
   .blockingSubscribe(System.out::println);
 ```
 
-Another way to handle the load is to create buffer of certain size, 5 in our case, and then do operation on that buffer. We are going to take average number from every 5 values we receive. 
+Another way to handle the load is to create buffer of certain size, 5 in our case, and then do operation on that buffer. We are going to take average number from every 5 values we receive.
 
 ```
 // throttling -> get average
@@ -325,7 +325,7 @@ Flowable
   .blockingSubscribe(System.out::println);
 ```
 
-Another way to handle big load of values is to get only first value. We are going to Therea only first value that was received. 
+Another way to handle big load of values is to get only first value. We are going to Therea only first value that was received.
 
 ```
 // throttling -> throttle first value
@@ -336,9 +336,36 @@ Flowable
   .blockingSubscribe(System.out::println);
 ```
 
+#### Backpressure
+
+With back-pressure we control how much is coming it.
+
+```
+Flowable<Long> flowable = Flowable
+  .rangeLong(1, 1000);
+
+flowable.subscribe(new DisposableSubscriber<>() {
+  @Override
+  public void onNext(Long aLong) {
+    request(1);
+    System.out.println(aLong);
+  }
+
+  @Override
+  public void onError(Throwable t) {
+    t.printStackTrace();
+  }
+
+  @Override
+  public void onComplete() {
+    System.out.println("Done");
+  }
+});
+```
+
 #### Scheduler
 
-There are different types of schedulers when using Flowable. Choosing scheduler is going to inform flowable what kind of strategy it should use for processing the items. 
+There are different types of schedulers when using Flowable. Choosing scheduler is going to inform flowable what kind of strategy it should use for processing the items.
 
 ```
 class Scheduler {
@@ -353,7 +380,7 @@ class Scheduler {
 }
 ```
 
-When we use trampoline scheduler, we receive the same thread 5 times. 
+When we use trampoline scheduler, we receive the same thread 5 times.
 
 ```
 main
@@ -363,5 +390,5 @@ main
 main
 ```
 
-When we use io scheduler, and we do some IO operations, we will see IO threads were created. 
+When we use io scheduler, and we do some IO operations, we will see IO threads were created.
 
