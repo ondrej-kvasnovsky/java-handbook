@@ -16,6 +16,7 @@
 * [Reactive Programming](reactive-programming.md)
   * [Event Driven Non-Blocking Frameworks](reactive-programming/event-driven-non-blocking-frameworks.md)
   * [Vert.x](event-driven-non-blocking-frameworks/vertx.md)
+    * [Making a game](event-driven-non-blocking-frameworks/vertx/making-a-game.md)
   * [Netty](event-driven-non-blocking-frameworks/netty.md)
   * [RxJava](reactive-programming/rxjava.md)
 
