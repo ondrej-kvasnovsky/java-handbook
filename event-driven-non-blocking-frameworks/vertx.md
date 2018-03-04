@@ -4,6 +4,8 @@
 
 Vert.x is an entire toolkit and ecosystem of pluggable modules on top of Netty for building reactive applications on top of the JVM.
 
+Issues with threads that Vert.x with Netty solved: A large block of memory has to be allocated and initialized for the thread stack. System calls need to be made to register the native thread with the host OS. Descriptors needs to be created, initialized and added to JVM internal data structures.
+
 ### Hello world
 
 Here are [many use cases](http://vertx.io/docs/) for Vert.x, but lets create hello world app as HTTP server.
