@@ -20,4 +20,6 @@
     * [SockJS](event-driven-non-blocking-frameworks/vertx/sockjs.md)
   * [Netty](event-driven-non-blocking-frameworks/netty.md)
   * [RxJava](reactive-programming/rxjava.md)
+* [Efficient Coding](efficient-coding.md)
+  * [Lombok](efficient-coding/lombok.md)
 
