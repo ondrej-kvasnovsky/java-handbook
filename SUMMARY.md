@@ -22,4 +22,5 @@
   * [RxJava](reactive-programming/rxjava.md)
 * [Efficient Coding](efficient-coding.md)
   * [Lombok](efficient-coding/lombok.md)
+* [Quartz Scheduling](quartz-scheduling.md)
 
